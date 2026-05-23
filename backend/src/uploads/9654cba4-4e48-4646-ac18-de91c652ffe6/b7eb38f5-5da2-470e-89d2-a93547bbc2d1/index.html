@@ -1,0 +1,679 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>文件管理</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 2.5cm 2cm 2.5cm 2cm;
+        }
+        body {
+            font-family: Arial, "Microsoft YaHei", "PingFang SC", sans-serif;
+            font-size: 11pt;
+            line-height: 1.8;
+            color: #1a1a2e;
+            max-width: 750px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        h1 {
+            font-size: 26pt;
+            font-weight: 700;
+            color: #0f3460;
+            text-align: center;
+            margin-bottom: 6pt;
+            letter-spacing: 2pt;
+            border-bottom: 3px solid #16213e;
+            padding-bottom: 12pt;
+        }
+        .subtitle {
+            text-align: center;
+            font-size: 10pt;
+            color: #666666;
+            margin-bottom: 36pt;
+        }
+        h2 {
+            font-size: 16pt;
+            font-weight: 700;
+            color: #0f3460;
+            margin-top: 32pt;
+            margin-bottom: 12pt;
+            padding-bottom: 6pt;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        h3 {
+            font-size: 13pt;
+            font-weight: 700;
+            color: #16213e;
+            margin-top: 22pt;
+            margin-bottom: 8pt;
+        }
+        p {
+            margin: 8pt 0;
+            text-indent: 0;
+        }
+        ul, ol {
+            margin: 6pt 0 12pt 0;
+            padding-left: 22pt;
+        }
+        li {
+            margin-bottom: 5pt;
+        }
+        blockquote {
+            background-color: #f0f4ff;
+            border-left: 4px solid #0f3460;
+            margin: 14pt 0;
+            padding: 10pt 16pt;
+            font-size: 10.5pt;
+            color: #333333;
+        }
+        code {
+            font-family: Consolas, "Courier New", monospace;
+            background-color: #f2f2f2;
+            padding: 1pt 5pt;
+            border-radius: 3pt;
+            font-size: 10pt;
+            color: #c0392b;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12pt 0;
+            font-size: 10.5pt;
+        }
+        th {
+            background-color: #0f3460;
+            color: #ffffff;
+            font-weight: 600;
+            padding: 8pt 12pt;
+            text-align: left;
+            border: 1px solid #0f3460;
+        }
+        td {
+            padding: 7pt 12pt;
+            border: 1px solid #dddddd;
+            vertical-align: top;
+        }
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        .highlight-box {
+            background-color: #fff8e1;
+            border: 1px solid #ffe082;
+            padding: 10pt 16pt;
+            margin: 14pt 0;
+            border-radius: 0;
+            font-size: 10.5pt;
+        }
+        .tip-box {
+            background-color: #e8f5e9;
+            border-left: 4px solid #388e3c;
+            padding: 10pt 16pt;
+            margin: 14pt 0;
+            font-size: 10.5pt;
+        }
+        .danger-box {
+            background-color: #fce4ec;
+            border-left: 4px solid #c62828;
+            padding: 10pt 16pt;
+            margin: 14pt 0;
+            font-size: 10.5pt;
+        }
+        .folder-tree {
+            background-color: #f5f5f5;
+            padding: 12pt 18pt;
+            margin: 12pt 0;
+            font-family: Consolas, "Courier New", monospace;
+            font-size: 10pt;
+            line-height: 1.9;
+            border: 1px solid #e0e0e0;
+        }
+        .section-intro {
+            font-size: 10.5pt;
+            color: #555555;
+            margin-bottom: 16pt;
+            font-style: italic;
+        }
+        .toc {
+            background-color: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            padding: 16pt 24pt;
+            margin: 20pt 0 30pt 0;
+        }
+        .toc-title {
+            font-weight: 700;
+            font-size: 12pt;
+            color: #0f3460;
+            margin-bottom: 10pt;
+        }
+        .toc li {
+            margin-bottom: 4pt;
+            font-size: 10.5pt;
+        }
+        .toc ol {
+            padding-left: 20pt;
+        }
+        .step-number {
+            display: inline-block;
+            background-color: #0f3460;
+            color: #ffffff;
+            width: 22pt;
+            height: 22pt;
+            text-align: center;
+            line-height: 22pt;
+            border-radius: 50%;
+            font-size: 10pt;
+            font-weight: 700;
+            margin-right: 6pt;
+        }
+        .platform-grid {
+            width: 100%;
+        }
+        .platform-grid td:first-child {
+            width: 120pt;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+    </style>
+</head>
+<body><link rel="stylesheet" href="/style/css/comment.css?v=1774954000"><div id="ax-comment-root" style="display:none" data-project-code="fGxKeIJg" data-source-url="/project/fGxKeIJg/"></div><script src="/style/js/comment.js?v=1778677487"></script><script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?569284bd4f73498e99f95390b8123820";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+<h1>个人与工作文件管理系统</h1>
+<p class="subtitle">基于 PARA 方法论的一站式文件管理方案 &nbsp;|&nbsp; 2026 年 5 月</p>
+
+<div class="toc">
+    <div class="toc-title">目录</div>
+    <ol>
+        <li>核心方法：PARA 四层分类体系</li>
+        <li>文件命名规范：让每个文件一目了然</li>
+        <li>跨平台云文档管理：统一多平台散落文件</li>
+        <li>执行路线图：从混乱到有序的 4 步迁移</li>
+        <li>日常维护习惯：保持系统持续运转</li>
+        <li>快速参考卡：常用规则速查表</li>
+    </ol>
+</div>
+
+<!-- ========== 第一章 ========== -->
+<h2>一、核心方法：PARA 四层分类体系</h2>
+
+<p class="section-intro">PARA 是 Building a Second Brain 的作者 Tiago Forte 提出的信息组织方法，已被全球数十万知识工作者验证有效。它的核心思想是：<strong>按"可操作性"而非"主题"来组织文件</strong>。</p>
+
+<h3>1.1 四个类别概览</h3>
+
+<table>
+    <tr>
+        <th>类别</th>
+        <th>英文</th>
+        <th>含义</th>
+        <th>判断标准</th>
+        <th>示例</th>
+    </tr>
+    <tr>
+        <td><strong>项目</strong></td>
+        <td>Projects</td>
+        <td>有明确目标和截止日期的任务</td>
+        <td>有终点，完成后会关闭</td>
+        <td>Q2 营销方案撰写、新员工入职培训</td>
+    </tr>
+    <tr>
+        <td><strong>领域</strong></td>
+        <td>Areas</td>
+        <td>需要持续维护的责任范围</td>
+        <td>无终点，需长期关注</td>
+        <td>财务管理、健康管理、客户关系</td>
+    </tr>
+    <tr>
+        <td><strong>资源</strong></td>
+        <td>Resources</td>
+        <td>感兴趣的、可能有用的参考资料</td>
+        <td>按主题归类，未来可能用上</td>
+        <td>行业研究报告、设计素材、学习笔记</td>
+    </tr>
+    <tr>
+        <td><strong>归档</strong></td>
+        <td>Archives</td>
+        <td>以上三类中已完成或不再活跃的内容</td>
+        <td>不再需要日常关注</td>
+        <td>2024 年已结项目、旧版规范文档</td>
+    </tr>
+</table>
+
+<blockquote>
+    <strong>核心心法：</strong>当你拿到一个文件时，不要问"这是什么主题的？"，而要问"这个文件跟我正在做的事情有什么关系？"。这决定了它该放到 P/A/R 中的哪一个。
+</blockquote>
+
+<h3>1.2 本地文件夹结构模板</h3>
+
+<p>以下是推荐的本地文件夹结构。你可以直接复制这个结构到自己的电脑上作为起点：</p>
+
+<div class="folder-tree">
+工作/<br>
+├── 01-Projects/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:#888;"># 正在进行的项目</span><br>
+│   ├── 2026Q2-XX产品上线/&nbsp;&nbsp; <span style="color:#888;"># 年份+项目名</span><br>
+│   ├── 2026-公司官网改版/&nbsp;&nbsp; <span style="color:#888;"># 跨年项目不写季度</span><br>
+│   └── 2026Q1-年度预算编制/&nbsp;&nbsp; <span style="color:#888;"># 已完成的项目移到归档</span><br>
+├── 02-Areas/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:#888;"># 持续关注的领域</span><br>
+│   ├── 财务管理/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:#888;"># 报销、发票、预算</span><br>
+│   ├── 客户管理/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:#888;"># 客户资料、沟通记录</span><br>
+│   ├── 团队管理/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:#888;"># 绩效、招聘、培训</span><br>
+│   └── 个人成长/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:#888;"># 学习计划、技能提升</span><br>
+├── 03-Resources/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:#888;"># 参考资料</span><br>
+│   ├── 行业研报/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:#888;"># 行业分析、竞品研究</span><br>
+│   ├── 模板库/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:#888;"># 通用模板、合同模板</span><br>
+│   ├── 素材库/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:#888;"># 图片、图标、品牌素材</span><br>
+│   └── 技术文档/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:#888;"># API 文档、技术规范</span><br>
+├── 04-Archives/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:#888;"># 已完成/不再活跃</span><br>
+│   ├── 2024/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:#888;"># 按年份归档</span><br>
+│   └── 2025/<br>
+<br>
+个人/<br>
+├── 01-Projects/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:#888;"># 个人项目（装修、旅行等）</span><br>
+├── 02-Areas/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:#888;"># 健康、理财、家庭</span><br>
+├── 03-Resources/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:#888;"># 阅读、兴趣素材</span><br>
+└── 04-Archives/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:#888;"># 历史归档</span>
+</div>
+
+<h3>1.3 文件归类决策流程</h3>
+
+<p>面对一个新文件，按以下顺序快速判断：</p>
+
+<ol>
+    <li><strong>它属于某个正在进行的项目吗？</strong> -- 是则放入 <code>01-Projects/项目名/</code></li>
+    <li><strong>它属于某个需要持续关注的领域吗？</strong> -- 是则放入 <code>02-Areas/领域名/</code></li>
+    <li><strong>它是供将来参考的资料吗？</strong> -- 是则放入 <code>03-Resources/主题名/</code></li>
+    <li><strong>以上都不适用？</strong> -- 如果曾经属于前三类但现在不活跃了，放入 <code>04-Archives/</code></li>
+</ol>
+
+<div class="highlight-box">
+    <strong>关键原则：文件夹层级不超过 3 层。</strong>层级太深会导致"藏起来就找不到"的问题。如果某类文件太多，优先考虑用文件名前缀区分，而不是再建子文件夹。
+</div>
+
+<!-- ========== 第二章 ========== -->
+<h2>二、文件命名规范：让每个文件一目了然</h2>
+
+<p class="section-intro">好的文件命名就像产品的标签，让你在搜索结果列表中 0.5 秒内识别出目标文件。</p>
+
+<h3>2.1 通用命名公式</h3>
+
+<blockquote>
+    <code>日期_类别_简短描述_版本号.扩展名</code>
+</blockquote>
+
+<table>
+    <tr>
+        <th>要素</th>
+        <th>格式</th>
+        <th>说明</th>
+        <th>示例</th>
+    </tr>
+    <tr>
+        <td>日期</td>
+        <td><code>YYYY-MM-DD</code></td>
+        <td>文件创建或最后修改日期</td>
+        <td><code>2026-05-13</code></td>
+    </tr>
+    <tr>
+        <td>类别</td>
+        <td>2-4 个汉字</td>
+        <td>文件的性质/类型</td>
+        <td><code>方案</code> <code>报告</code> <code>合同</code> <code>会议</code></td>
+    </tr>
+    <tr>
+        <td>描述</td>
+        <td>简洁关键词</td>
+        <td>核心内容，使用能搜索到的关键词</td>
+        <td><code>Q2营销推广计划</code></td>
+    </tr>
+    <tr>
+        <td>版本号</td>
+        <td><code>v1.0</code> / <code>v2.1</code></td>
+        <td>迭代版本，非必填</td>
+        <td><code>v3.0</code></td>
+    </tr>
+</table>
+
+<h3>2.2 各类文件命名示例</h3>
+
+<table>
+    <tr>
+        <th>文件类型</th>
+        <th>命名示例</th>
+    </tr>
+    <tr>
+        <td>项目方案</td>
+        <td><code>2026-05-13_方案_友擎GEO官网改版_v2.0.docx</code></td>
+    </tr>
+    <tr>
+        <td>会议纪要</td>
+        <td><code>2026-05-12_会议_产品周会纪要.docx</code></td>
+    </tr>
+    <tr>
+        <td>合同文件</td>
+        <td><code>2026-04-20_合同_XX公司服务合同_已签署.pdf</code></td>
+    </tr>
+    <tr>
+        <td>数据报表</td>
+        <td><code>2026-05-10_报表_4月份销售数据分析.xlsx</code></td>
+    </tr>
+    <tr>
+        <td>设计稿</td>
+        <td><code>2026-05-08_设计_官网首页Banner_v3.psd</code></td>
+    </tr>
+    <tr>
+        <td>学习笔记</td>
+        <td><code>2026-05-06_笔记_Astro框架入门.md</code></td>
+    </tr>
+    <tr>
+        <td>发票/报销</td>
+        <td><code>2026-04-15_发票_阿里云服务器_¥2400.pdf</code></td>
+    </tr>
+</table>
+
+<h3>2.3 命名铁律（必须遵守）</h3>
+
+<table>
+    <tr>
+        <th style="width:60pt;">规则</th>
+        <th>正确做法</th>
+        <th>错误做法</th>
+    </tr>
+    <tr>
+        <td><strong>禁止空格</strong></td>
+        <td>使用下划线 <code>_</code> 或连字符 <code>-</code></td>
+        <td><code>Q2 营销 方案.docx</code></td>
+    </tr>
+    <tr>
+        <td><strong>禁止特殊字符</strong></td>
+        <td>只用中文、英文、数字、<code>_</code>、<code>-</code></td>
+        <td><code>方案@最终版！！！.docx</code></td>
+    </tr>
+    <tr>
+        <td><strong>禁止"最终版"思维</strong></td>
+        <td>用版本号 <code>v1.0</code>、<code>v1.1</code></td>
+        <td><code>方案_最终版_修改版_定稿.docx</code></td>
+    </tr>
+    <tr>
+        <td><strong>必须以日期开头</strong></td>
+        <td><code>2026-05-13_</code></td>
+        <td><code>新建文档(3).docx</code></td>
+    </tr>
+    <tr>
+        <td><strong>描述中包含可搜索关键词</strong></td>
+        <td>使用正式名称而非缩写</td>
+        <td><code>那个方案.docx</code></td>
+    </tr>
+</table>
+
+<div class="tip-box">
+    <strong>实操提示：</strong>文件命名花不了 5 秒，但能省下未来无数分钟搜索的时间。养成"保存即命名"的习惯，不要留"新建文档(1)"这种文件过夜。
+</div>
+
+<!-- ========== 第三章 ========== -->
+<h2>三、跨平台云文档管理：统一多平台散落文件</h2>
+
+<p class="section-intro">你的核心困境之一是文件散落在 WPS 云文档、飞书云文档、钉钉云文档等多个平台。本节提供一套跨平台统一管理策略。</p>
+
+<h3>3.1 第一步：确定每个平台的定位</h3>
+
+<p>不要试图只用一个平台。不同平台有各自的优势，正确的做法是<strong>为每个平台指定明确的职责边界</strong>：</p>
+
+<table>
+    <tr>
+        <th>平台</th>
+        <th>推荐定位</th>
+        <th>适合存放</th>
+        <th>不适合存放</th>
+    </tr>
+    <tr>
+        <td><strong>WPS 云文档</strong></td>
+        <td>个人主工作台</td>
+        <td>个人文档草稿、本地同步的正式文件、合同存档</td>
+        <td>团队协作中的实时编辑文档</td>
+    </tr>
+    <tr>
+        <td><strong>飞书云文档</strong></td>
+        <td>团队协作中枢</td>
+        <td>团队共创文档、项目 Wiki、会议纪要、OKR</td>
+        <td>个人私密文件、合同原件</td>
+    </tr>
+    <tr>
+        <td><strong>钉钉云文档</strong></td>
+        <td>行政与流程平台</td>
+        <td>审批流文件、OA 表单、考勤数据、报销附件</td>
+        <td>非钉钉流程驱动的日常文档</td>
+    </tr>
+</table>
+
+<h3>3.2 第二步：建立"索引文档"作为统一入口</h3>
+
+<p>既然文件分散在多个平台，最实用的解决方案是<strong>在 WPS 云文档中维护一份"文件索引表"</strong>，作为所有文件的统一查询入口：</p>
+
+<div class="highlight-box">
+    <strong>文件索引表设计（建议用 WPS 在线表格制作）：</strong>
+</div>
+
+<table>
+    <tr>
+        <th>字段</th>
+        <th>说明</th>
+        <th>示例</th>
+    </tr>
+    <tr>
+        <td>日期</td>
+        <td>文件创建/更新日期</td>
+        <td><code>2026-05-13</code></td>
+    </tr>
+    <tr>
+        <td>文件名称</td>
+        <td>标准命名</td>
+        <td><code>方案_友擎GEO官网改版_v2.0</code></td>
+    </tr>
+    <tr>
+        <td>PARA 类别</td>
+        <td>所属 PARA 分类</td>
+        <td>项目 / 领域 / 资源 / 归档</td>
+    </tr>
+    <tr>
+        <td>主题/项目</td>
+        <td>关联的项目或领域</td>
+        <td><code>友擎GEO</code></td>
+    </tr>
+    <tr>
+        <td>存放平台</td>
+        <td>文件实际所在平台</td>
+        <td>WPS / 飞书 / 钉钉 / 本地</td>
+    </tr>
+    <tr>
+        <td>链接/路径</td>
+        <td>点击可直达的超链接</td>
+        <td><code>https://...</code> 或本地路径</td>
+    </tr>
+    <tr>
+        <td>备注</td>
+        <td>补充说明</td>
+        <td><code>待客户确认后归档</code></td>
+    </tr>
+</table>
+
+<div class="tip-box">
+    <strong>操作建议：</strong>你可以现在就新建一个 WPS 在线表格，按照上面的字段结构创建表头，以后每创建或移动一个文件，就花 10 秒登记一行。这张表就是你所有文件的"搜索引擎"。
+</div>
+
+<h3>3.3 第三步：执行"定期归拢"机制</h2>
+
+<p>仅靠索引表还不够，需要配合定期归拢动作：</p>
+
+<ol>
+    <li><strong>每周 5 分钟快扫</strong>：打开各平台的"最近文档"列表，检查是否有重要文件漏登记到索引表</li>
+    <li><strong>每月 30 分钟整理</strong>：将已完成项目的文档统一移到 PARA 的"归档"区域，并更新索引表状态</li>
+    <li><strong>每季度一次大清理</strong>：审视各平台文件，删除过期/重复文件，将仍需保留的重要文件下载到本地 WPS 作为主备份</li>
+</ol>
+
+<h3>3.4 跨平台协作场景的处理原则</h3>
+
+<table>
+    <tr>
+        <th>场景</th>
+        <th>处理方式</th>
+    </tr>
+    <tr>
+        <td>飞书/钉钉上协作完成的文档需要归档</td>
+        <td>导出 PDF 下载到本地 WPS 的 <code>04-Archives/</code>，同时在索引表中登记</td>
+    </tr>
+    <tr>
+        <td>同一文件需要在多个平台共享</td>
+        <td><strong>选定一个平台作为"正本"</strong>，其他平台存放链接或副本。正本始终只有一个</td>
+    </tr>
+    <tr>
+        <td>不确定文件该放哪个平台</td>
+        <td>默认原则：<strong>个人文件放 WPS，团队文件放对应的协作平台</strong></td>
+    </tr>
+    <tr>
+        <td>离职/转岗需要交接</td>
+        <td>将飞书/钉钉上的个人文件导出，按 PARA 结构归入 WPS 本地目录，移交索引表</td>
+    </tr>
+</table>
+
+<div class="danger-box">
+    <strong>核心原则：每个文件只应有一个"正本"。</strong>多平台各存一份会导致版本混乱，最终你永远不知道哪个才是最新的。如果确实需要在多平台使用，选定一个平台为正本，其他地方放链接指向正本。
+</div>
+
+<!-- ========== 第四章 ========== -->
+<h2>四、执行路线图：从混乱到有序的 4 步迁移</h2>
+
+<p class="section-intro">不要试图一天内整理完所有文件。按照以下节奏，逐步过渡到新系统：</p>
+
+<h3>第 1 步：搭建骨架（第 1 天，约 30 分钟）</h3>
+<ol>
+    <li>在本地创建 <code>工作/</code> 和 <code>个人/</code> 两个根文件夹</li>
+    <li>在每个根文件夹下创建 <code>01-Projects/</code>、<code>02-Areas/</code>、<code>03-Resources/</code>、<code>04-Archives/</code></li>
+    <li>在 WPS 云文档中新建"文件索引表"在线表格</li>
+    <li>创建 <code>03-Resources/模板库/</code>，放入常用文件模板（会议纪要、项目方案等）</li>
+</ol>
+
+<h3>第 2 步：处理当前活跃文件（第 2-3 天，约 1 小时）</h3>
+<ol>
+    <li>找出桌面、下载文件夹、"我的文档"中的所有文件</li>
+    <li>按 PARA 分类快速归入对应文件夹</li>
+    <li>重命名为标准命名格式</li>
+    <li>在索引表中登记重要文件</li>
+</ol>
+
+<h3>第 3 步：整理云平台文件（第 4-7 天，每天 20 分钟）</h3>
+<ol>
+    <li>逐一登录 WPS、飞书、钉钉云文档</li>
+    <li>将所有文件按平台定位审视：个人文件下载到本地 WPS，团队协作文件确认归属</li>
+    <li>在索引表中补录所有重要文件的链接和平台信息</li>
+</ol>
+
+<h3>第 4 步：归档历史文件（第 2 周起，按需进行）</h3>
+<ol>
+    <li>将旧文件夹中不再活跃的文件批量移入 <code>04-Archives/年份/</code></li>
+    <li>不需要重命名每个旧文件，只需确保归档文件夹按年份组织</li>
+    <li>在索引表中标记这些文件为"已归档"状态</li>
+</ol>
+
+<!-- ========== 第五章 ========== -->
+<h2>五、日常维护习惯：保持系统持续运转</h2>
+
+<h3>5.1 新文件处理规则</h3>
+
+<table>
+    <tr>
+        <th>时机</th>
+        <th>动作</th>
+        <th>耗时</th>
+    </tr>
+    <tr>
+        <td>新建文件时</td>
+        <td>立即按命名规范命名，保存到 PARA 对应文件夹</td>
+        <td>5 秒</td>
+    </tr>
+    <tr>
+        <td>收到他人发来的文件时</td>
+        <td>重命名后归入对应文件夹，不要留在下载目录</td>
+        <td>10 秒</td>
+    </tr>
+    <tr>
+        <td>在云平台创建协作文档时</td>
+        <td>同步在索引表中登记一行</td>
+        <td>10 秒</td>
+    </tr>
+    <tr>
+        <td>项目结束时</td>
+        <td>将项目文件夹整体移入 <code>04-Archives/</code></td>
+        <td>1 分钟</td>
+    </tr>
+</table>
+
+<h3>5.2 定期维护节奏</h3>
+
+<table>
+    <tr>
+        <th>频率</th>
+        <th>维护内容</th>
+        <th>预计耗时</th>
+    </tr>
+    <tr>
+        <td><strong>每天</strong></td>
+        <td>清空桌面和下载文件夹</td>
+        <td>2 分钟</td>
+    </tr>
+    <tr>
+        <td><strong>每周</strong></td>
+        <td>更新索引表、检查云平台最近文档</td>
+        <td>5 分钟</td>
+    </tr>
+    <tr>
+        <td><strong>每月</strong></td>
+        <td>已完成项目归档、删除临时/废弃文件</td>
+        <td>30 分钟</td>
+    </tr>
+    <tr>
+        <td><strong>每季度</strong></td>
+        <td>跨平台大清理、备份重要文件、审视 PARA 结构是否需要调整</td>
+        <td>1-2 小时</td>
+    </tr>
+</table>
+
+<!-- ========== 第六章 ========== -->
+<h2>六、快速参考卡：常用规则速查表</h2>
+
+<div class="highlight-box">
+    <strong>文件存放判断：</strong>
+    <br>有截止日期 + 有明确产出 = <code>01-Projects/</code>
+    <br>需要长期关注 + 没有终点 = <code>02-Areas/</code>
+    <br>感兴趣 + 留着备用 = <code>03-Resources/</code>
+    <br>已完成/不活跃 = <code>04-Archives/</code>
+</div>
+
+<div class="highlight-box">
+    <strong>文件命名公式：</strong>
+    <br><code>YYYY-MM-DD_类别_描述_版本号.扩展名</code>
+    <br>例：<code>2026-05-13_方案_官网改版_v2.0.docx</code>
+</div>
+
+<div class="highlight-box">
+    <strong>跨平台定位：</strong>
+    <br>WPS = 个人主工作台 | 飞书 = 团队协作 | 钉钉 = 行政流程
+    <br>每个文件只有一个"正本"，其他地方放链接
+    <br>维护一张"文件索引表"作为统一查询入口
+</div>
+
+<div class="highlight-box">
+    <strong>维护节奏：</strong>
+    <br>每天 2 分钟清空桌面 | 每周 5 分钟更新索引 | 每月 30 分钟归档 | 每季度深度清理
+</div>
+
+</body>
+</html>
