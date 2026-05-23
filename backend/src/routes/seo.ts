@@ -14,7 +14,7 @@ import hljs from 'highlight.js';
 
 const router = Router();
 
-const SITE_URL = process.env.SITE_URL || 'http://localhost:3000';
+const SITE_URL = process.env.SITE_URL || 'https://blog.css123.com';
 const SITE_LOGO = '/logo.png';
 
 // Configure marked with highlight.js
@@ -640,13 +640,6 @@ router.get('/sitemap.xml', async (req: any, res: any) => {
 router.get('/robots.txt', (req: Request, res: Response) => {
   res.type('text/plain').send(`User-agent: *
 Allow: /
-Allow: /s/
-Allow: /post/
-Allow: /tags/
-Allow: /works/
-Disallow: /api/
-Disallow: /bianji/
-Disallow: /covers/
 
 Sitemap: ${SITE_URL}/sitemap.xml
 `);
