@@ -16,11 +16,7 @@ cd project-share
 npm install
 
 # Start both frontend and backend (development)
-npm run dev
-
-# Or start individually
-npm run dev:backend  # Backend on http://localhost:3001
-npm run dev:frontend # Frontend on http://localhost:5173
+node --import tsx server.tsx
 ```
 
 ## Directory Structure
