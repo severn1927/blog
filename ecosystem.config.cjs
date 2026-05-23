@@ -2,8 +2,7 @@ module.exports = {
   apps: [{
     name: 'yiming-blog',
     script: 'server.tsx',
-    interpreter: 'node',
-    interpreter_args: '--import tsx',
+    interpreter: 'tsx',
     cwd: __dirname,
     env: {
       NODE_ENV: 'production',
